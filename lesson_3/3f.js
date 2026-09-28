@@ -1,0 +1,1 @@
+alert(`Toatal cost: $${5+3}`);
