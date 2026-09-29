@@ -2,97 +2,47 @@
 <html>
   <head></head>
   <body>
-    <p>
-      <button onclick="
-        updateCalculation('1');
-      ">1</button>
-
-      <button onclick="
-        updateCalculation('2');
-      ">2</button>
-
-      <button onclick="
-        updateCalculation('3');
-      ">3</button>
-
-      <button onclick="
-        updateCalculation(' + ');
-      ">+</button>
-    </p>
-
-    <p>
-      <button onclick="
-        updateCalculation('4');
-      ">4</button>
-
-      <button onclick="
-        updateCalculation('5');
-      ">5</button>
-
-      <button onclick="
-        updateCalculation('6');
-      ">6</button>
-
-      <button onclick="
-        updateCalculation(' - ');
-      ">-</button>
-    </p>
-
-    <p>
-      <button onclick="
-        updateCalculation('7');
-      ">7</button>
-
-      <button onclick="
-        updateCalculation('8');
-      ">8</button>
-
-      <button onclick="
-        updateCalculation('9');
-      ">9</button>
-
-      <button onclick="
-        updateCalculation(' * ');
-      ">*</button>
-    </p>
-
-    <p>
-      <button onclick="
-        updateCalculation('0');
-      ">0</button>
-
-      <button onclick="
-        updateCalculation('.');
-      ">.</button>
-
-      <button onclick="
-        // Note: eval() takes a string and runs it as code.
-        // Avoid using eval() in real world projects since
-        // it can potentially be given harmful code to run.
-        // Only use eval() for learning purposes.
-        calculation = eval(calculation);
-        console.log(calculation);
-      ">=</button>
-
-      <button onclick="
-        updateCalculation(' / ');
-      ">/</button>
-    </p>
-
-    <p>
-      <button onclick="
-        calculation = '';
-        console.log(calculation);
-      ">Clear</button>
-    </p>
-
     <script>
-      let calculation = '';
+      function convertLength(length, from, to) {
+        if (from !== 'km' && from !== 'miles' && from !== 'ft') {
+          return `Invalid unit: ${from}`;
+        } else if (to !== 'km' && to !== 'miles' && to !== 'ft') {
+          return `Invalid unit: ${to}`;
+        }
+        
+        if (from === 'km' && to === 'miles') {
+          return `${length / 1.6} ${to}`;
 
-      function updateCalculation(value) {
-        calculation += value;
-        console.log(calculation);
+        } else if (from === 'km' && to === 'ft') {
+          return `${length * 3281} ${to}`;
+          
+        } else if (from === 'miles' && to === 'km') {
+          return `${length * 1.6} ${to}`;
+
+        } else if (from === 'miles' && to === 'ft') {
+          return `${length * 5280} ${to}`;
+
+        } else if (from === 'ft' && to === 'km') {
+          return `${length / 3281} ${to}`;
+
+        } else if (from === 'ft' && to === 'miles') {
+          return `${length / 5280} ${to}`;
+
+
+        } else if (from === to) {
+          return `${length} ${to}`;
+        }
       }
+
+      console.log(convertLength(50, 'miles', 'km'));
+      console.log(convertLength(32, 'km', 'miles'));
+      console.log(convertLength(50, 'km', 'km'));
+
+      console.log(convertLength(5, 'miles', 'km'));
+      console.log(convertLength(5, 'miles', 'ft'));
+      console.log(convertLength(5, 'km', 'ft'));
+
+      console.log(convertLength(5, 'lbs', 'lbs'));
     </script>
   </body>
 </html>
